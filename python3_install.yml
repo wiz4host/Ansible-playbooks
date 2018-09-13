@@ -1,0 +1,41 @@
+---
+- hosts: webservers
+  sudo: yes
+  tasks:
+  - name: update yum
+    yum:
+      name: '*'
+      state: latest
+  
+  - name: install yum-utils
+    yum:
+      name: "{{ packages }}"
+    vars:
+      packages:
+      - yum-utils
+
+  - name: install the 'Development tools' package group
+    yum:
+      name: "@Development tools"
+      state: present
+
+  - name: install the IUS rpm from a remote repo
+    yum: 
+      name: https://centos7.iuscommunity.org/ius-release.rpm
+      state: present
+
+
+  - name: install Python36
+    yum:
+      name: python36u
+      state: present
+
+  - name: Validate Python3 Version
+    command: python3.6 --version
+    register: python_ver
+
+  - name: Python version print
+    debug:
+      msg: "Python Version installed = {{ python_ver.stdout_lines }}"
+    
+     
