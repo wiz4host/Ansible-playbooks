@@ -51,12 +51,12 @@
 
   - name: Create Virtual environment directories
     file:
-      path: /root/django-fundamentals-course/python3
+      path: /root/python3_virtual_env/django-env
       state: directory
       mode: 0755
 
   - name: Creating python3 virtual environment
     pip:
       name: bottle
-      virtualenv:  /root/django-fundamentals-course/python3
+      virtualenv:  /root/python3_virtual_env/django-env
       virtualenv_command: /usr/bin/python3.6 -m venv
