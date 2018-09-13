@@ -57,6 +57,9 @@
 
   - name: Creating python3 virtual environment
     pip:
-      name: bottle
+      name: "{{ item }}"
       virtualenv:  /root/python3_virtual_env/django-env
       virtualenv_command: /usr/bin/python3.6 -m venv
+    with_items:
+      - django
+      - bottle
