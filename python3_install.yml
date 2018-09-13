@@ -38,4 +38,25 @@
     debug:
       msg: "Python Version installed = {{ python_ver.stdout_lines }}"
     
-     
+
+  - name:  install pip3
+    yum:
+      name: python36u-pip
+
+
+  - name: install python36u-devel for Python3 development
+    yum:
+      name: python36u-devel
+
+
+  - name: Create Virtual environment directories
+    file:
+      path: /root/django-fundamentals-course/python3
+      state: directory
+      mode: 0755
+
+  - name: Creating python3 virtual environment
+    pip:
+      name: bottle
+      virtualenv:  /root/django-fundamentals-course/python3
+      virtualenv_command: /usr/bin/python3.6 -m venv
